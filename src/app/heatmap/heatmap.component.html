@@ -1,0 +1,14 @@
+<div class="flex-container">
+    <div>
+        <h4>Heatmap using Alpha</h4>
+        <table>
+            <tr *ngFor="let row of data">
+                <td *ngFor="let cell of row">
+                    <div
+                        [ngStyle]="{'background-color': 'rgba(255,0,0,'+ normalizeData(cell, this.min, this.max) +')'}">
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
