@@ -19,12 +19,17 @@ export class HeatmapComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // First step: Flatten the data to a one dimention array.
     const flat = this.data.reduce((acc, val) => acc.concat(val), []);
+
+    //  Second step: Extract the min and max value from the flat data.
     this.min = flat.reduce((a, b) => a <= b ? a : b);
     this.max = flat.reduce((a, b) => a >= b ? a : b);
   }
 
+  //  Function for mapping a value from an input interval to an output interval.
   normalizeData(val: number, inMin: number, inMax: number, outMin: number = 0, outMax: number = 1) {
+    //  Ratio of the deltas for out & in
     const ratio = (outMax - outMin) / (inMax - inMin);
     // Displacements are needed in order to adjust the result
     // since the lower and upper values could begin in a different place.
